@@ -12,6 +12,22 @@ The main features of the app are as follows:
 
 The app uses a user schema to store and manage user data. A schema is a blueprint that defines the structure of a document in MongoDB. The user schema defines the properties and data types for each user document.
 
+```
+const userSchema = mongoose.Schema({
+    id:{type : Number},
+    first_name: {type: String , required:true},
+    last_name : {type: String , required:true},
+    email: {type: String , required:true},
+    gender:{type: String , required:true},
+    income:{type: String , required:true},
+    city:{type: String , required:true},
+    car:{type: String , required:true},
+    quote:{type: String , required:true},
+    phone_price:{type: String , required:true},  
+    
+});
+```
+
 ### Fetching of API
 
 The app uses MongoDB queries and the `find()` function to fetch data from the database. MongoDB queries are used to filter and sort data, and the `find()` function is used to retrieve data from a collection in the database.

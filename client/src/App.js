@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Table from "./components/Table";
 import Table5 from "./components/Table5";
-const API = axios.create({ baseURL: "http://localhost:5000/api/users" });
+const API = axios.create({ baseURL: "https://mobilicis-data-fetching.onrender.com/api/users" });
 
 function App() {
   const [data1, setData1] = useState([]);

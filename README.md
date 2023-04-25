@@ -32,12 +32,76 @@ const userSchema = mongoose.Schema({
 
 The app uses MongoDB queries and the `find()` function to fetch data from the database. MongoDB queries are used to filter and sort data, and the `find()` function is used to retrieve data from a collection in the database.
 
+```
+export const getData1 = async (req, res) => {
+  try {
+    const users = await User.find({
+      car: { $in: ["BMW", "Mercedes-Benz"] },
+    });
+    const filteredUsers = users.filter(
+      (user) => parseFloat(user.income.substring(1)) <= 5
+    );
+    res.status(200).json(filteredUsers);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+```
+
 The fetched data is then passed to the front-end of the app, where it is displayed to the user.
 
+```
+useEffect(() => {
+    const getData = async (ind, setData, setLoading) => {
+      try {
+        const res = await API.get(`/data${ind}`);
+        const dt = await res.data;
+        setData(dt);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    getData(1, setData1, setLoading1);
+    getData(2, setData2, setLoading2);
+    getData(3, setData3, setLoading3);
+    getData(4, setData4, setLoading4);
+    getData(5, setData5, setLoading5);
+  }, []);
+  ```
+  
 ### Displaying Table
 
 The app uses Bootstrap to display tables. Bootstrap is a popular front-end development framework that provides a set of tools and components for building responsive and mobile-first websites.
 
+```
+            <tbody>
+                {paginatedItems.slice(0, 20).map((item, ind) => (
+                  <tr key={item.id}>
+                    <th scope="row">{ind + currentPage * itemsPerPage + 1}</th>
+                    <td>
+                      {item.first_name} {item.last_name}
+                    </td>
+                    <td>{item.email}</td>
+                    <td>{item.gender}</td>
+                    <td>{item.income}</td>
+                    <td>{item.city}</td>
+                    <td>{item.car}</td>
+                    <td>{item.phone_price}</td>
+                    <td
+                      className="quote"
+                      onClick={(e) => {
+                        e.target.classList.toggle("white-space");
+                      }}
+                    >
+                      "{item.quote}"
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+ ```
+ 
 Tables are a common way of displaying data in web applications, and Bootstrap provides a number of classes and styles for creating tables that are easy to read and navigate.
 
 Conclusion

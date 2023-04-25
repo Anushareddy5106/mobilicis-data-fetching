@@ -97,7 +97,7 @@ const Table5 = ({ id, content, data, loading }) => {
                   return (
                     <>
                       <div className="t-row">
-                        <span className="t-span id">{index}</span>
+                        <span className="t-span id">{index+1}</span>
                         <span className="t-span city">{city._id}</span>
                         <span className="t-span num-users">
                           {city.num_users}
